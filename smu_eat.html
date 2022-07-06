@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- www.sahyunjin.com/SMUeat -->
+    <title>상명대생 오늘 어디서 먹지?</title>
+    <meta charset="utf-8">
+    <meta name="author" content="사현진">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap');
+      body{
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      }
+      header ul{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      }
+      header ul li{
+      display: inline-block;
+      text-align: right;
+      float: right;
+      }
+      header .nav-link{
+      padding:10px;
+      }
+      .navbar-dark{
+      background: #089797;
+      }
+      .navbar-dark a:hover{
+      color: #ddd;
+      }
+      .navbar-brand{
+      font-weight: 800;
+      font-size:xx-large;
+      }
+      .fa{
+      font-size: 32px;
+      }
+      .col-md-1 p{
+      font-weight: bold;
+      padding-top: 13%;
+      }
+      .navbar-nav{
+      display: inline-flex;
+      margin: 0 auto;
+      }
+      .navbar-nav li{
+      padding-right: 30px;
+      }
+      .navbar-nav li a.nav-link{
+      color: #fff !important;
+      font-size: 20px;
+      cursor: pointer;
+      border-bottom: 1px solid #008080;
+      }
+      .navbar-nav li a.nav-link:hover{
+      color: #ddd;
+      border-bottom: 1px solid #ddd;
+      }
+      .navbar-toggler{
+      color: rgba(255,255,255,.5);
+      border-color: rgba(255,255,255,.1);
+      }
+      .form-control{
+      height: 40px;
+      border-radius: 0px;
+      }
+      @media(max-width: 992px){
+      .navbar-collapse{
+      text-align: center;
+      }
+      .form-inline{
+      display: block;
+      }
+      .fa{
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+      }
+      }
+      @media(max-width: 768px){
+      header{
+      text-align: center;
+      }
+      .col-md-1 p{
+      padding-top: 0;
+      }
+      header ul{
+      display: inline-block;
+      margin: 0 auto;
+      text-align: center;
+      float: none;
+      }
+      .navbar-nav{
+      display: block;
+      }
+      .navbar-nav li a.nav-link{
+      border: none;
+      }
+      .navbar-nav li a.nav-link:hover{
+      background: #dddddda3;
+      color: #000;
+      border: none;
+      }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="bg-white">
+      <div class="container">
+        <div class="row">
+        <img class="col-1" src="상명대마크.png" style="height: 65px;">
+          <div class="col-7">
+            <a class="navbar-brand text-dark pt-2" href="#">상명대생 오늘 어디서 먹지?</a>
+          </div>
+          <div class="col-4 pt-2">
+            <ul>
+              <li>사이트 개발자:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SMU Software 19th 사현진</li>
+              <li>문의:&nbsp;&nbsp;&nbsp;&nbsp;tkguswls1106@naver.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" >전체</a>
+          </li>
+          <li class="nav-item pt-2">
+            <a class="nav-text" style="color: white; font-size: large;">|</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">식당 (식사만 가능)</a>
+          </li>
+          <li class="nav-item pt-2">
+            <a class="nav-text" style="color: white; font-size: large;">|</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">술먹기좋은식당 and 술집 (식사&술 모두 가능)</a>
+          </li>
+          <li class="nav-item pt-2">
+            <a class="nav-text" style="color: white; font-size: large;">|</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.smu.ac.kr/ko/life/restaurantView4.do">SMU 학식</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <br>
+    <div style="text-align: center;"><strong style="font-size: 18px;">과정 1 >&nbsp;</strong>장소 이름&nbsp;<strong>검색</strong></div>
+    <div class="row">
+        <div class="col"></div>
+        <form class="form-inline my-2 my-lg-0 div-to-align">
+            <input class="form-control mr-sm-2" type="text" placeholder="전체 장소중 검색">
+            <button class="btn btn-danger my-2 my-sm-0" type="button">Search</button>
+        </form>
+        <div class="col"></div>
+    </div>
+    <div style="text-align: center">
+        <strong style="font-size: 18px;">과정 2 >&nbsp;</strong>장소가 검색에 뜨면&nbsp;<strong>리뷰 탐색 및 작성</strong> or 안뜨면&nbsp;<strong>장소추가</strong>&nbsp;&nbsp;<button type="button" class="btn btn-primary">장소추가</button>
+    </div>
+    <hr style="border: 1; height: 10px;">
+  </body>
+</html>
