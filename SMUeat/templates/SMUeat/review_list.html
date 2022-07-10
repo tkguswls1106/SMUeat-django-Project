@@ -1,0 +1,60 @@
+{% extends 'SMUeat/base.html' %}
+{% load static %}
+{% block content %}
+<script>
+    function sorting()
+    {
+        var sort_select = document.getElementById("sort_select");
+        var val = sort_select.options[sort_select.selectedIndex].value;
+        if (val == "recent") {
+            location.href="/SMUeat/place/{{ place.id }}/review/list/recent/";
+        }
+        else if (val == "highpoint") {
+            location.href="/SMUeat/place/{{ place.id }}/review/list/highpoint/";
+        }
+        else if (val == "lowpoint") {
+            location.href="/SMUeat/place/{{ place.id }}/review/list/lowpoint/";
+        }
+    }
+</script>
+
+<div class="container">
+    <h4 style="display:inline">'<strong>{{ place.name }}</strong>' 리뷰 목록 ({{ sort }})</h4>&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary" style="margin-bottom: 9px;" onclick="location.href='/SMUeat/place/{{place.id}}/review/create/'">+ 리뷰 작성</button>
+    <br>
+    
+    <form>
+        <select id = "sort_select" name = "sort" size="1">
+            <option value = "recent">최신순</option>
+            <option value = "highpoint">평점 높은순</option>
+            <option value = "lowpoint">평점 낮은순</option>
+        </select>
+        <input type="button" value="정렬" onclick="sorting();">
+    </form>
+    <div style="line-height: 180%;"><br></div>
+
+    {% for review in reviews %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text"><strong>평점:</strong> {{ review.point }}점</p>
+                    <p class="card-text"><strong>추천 메뉴:</strong> {{ review.menu }}</p>
+                    <p class="card-text"><strong>리뷰 설명:</strong> {{ review.comment }}</p>
+                    <button type="button" class="btn btn-primary" onclick="location.href='/SMUeat/place/{{place.id}}/review/{{review.id}}/update/'">리뷰 수정</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='/SMUeat/place/{{place.id}}/review/{{review.id}}/delete/'">리뷰 삭제</button>
+                    <div style="line-height: 60%;"><br></div>
+                    <span style="font-size: small;">작성날짜: {{ review.created_at | date:'Y.m.d' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="line-height: 70%;"><br></div>
+    {% endfor %}
+
+    <!-- pagenator -->
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'SMUeat/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    {% for place in places %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><strong>{{ place.name }}</strong></h4>
+                    <p class="card-text"><strong>카테고리:</strong> {{ place.category }}</p>
+                    <p class="card-text"><strong>평점:</strong> {{ place.average_point }}점/5점 ({{ place.review_count }}명 참여)</p>
+                    <a href="{% url 'review-list' place_id=place.id %}" class="card-link">리뷰 보기&작성</a>
+                    <a href="{% url 'place-delete' place_id=place.id %}" class="card-link">장소 삭제</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="line-height: 70%;"><br></div>
+    {% endfor %}
+
+    <!-- pagenator -->
+
+
+</div>
+
+{% endblock %}

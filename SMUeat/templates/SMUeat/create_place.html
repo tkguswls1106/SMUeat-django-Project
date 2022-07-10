@@ -1,0 +1,13 @@
+{% extends 'SMUeat/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <form action="{% url 'place-create' %}" method="post">
+    {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit" class="btn btn-primary">장소 등록</button>
+    </form>
+</div>
+{% endblock %}
