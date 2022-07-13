@@ -12,4 +12,5 @@ urlpatterns = [
     path('place/<int:place_id>/review/create/', views.review_create, name="review-create"),
 
     path('place/<int:place_id>/review/list/<str:sorting_name>/', views.review_sorting, name='review-sorting'),
+    path('place/<str:category_link>/list/<str:sorting_name>/', views.place_sorting, name='place-sorting'),
 ]
