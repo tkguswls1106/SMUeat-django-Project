@@ -16,7 +16,7 @@ class Place(models.Model):
 class Review(models.Model):
     point = models.IntegerField()
     menu = models.CharField(max_length=30)
-    comment = models.CharField(max_length = 500)
+    comment = models.TextField()
     # password
 
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
