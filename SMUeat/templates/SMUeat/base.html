@@ -127,7 +127,7 @@
         <div class="row">
         <img class="col-1" src="{% static 'SMUeat/상명대마크.png' %}" style="height: 65px;">
           <div class="col-7">
-            <a class="navbar-brand text-dark pt-2" href="/SMUeat/">상명대생 오늘 어디서 먹지?</a>
+            <a class="navbar-brand text-dark pt-2" style="margin-right: 11px;" href="/SMUeat/">상명대생 오늘 어디서 먹지?</a><a style="color: rgb(106, 105, 105); text-decoration:none;" href="/SMUeat/">SMU eat</a>
           </div>
           <div class="col-4 pt-2">
             <ul>
@@ -177,9 +177,10 @@
     <div style="text-align: center;"><strong style="font-size: 18px;">과정 1 >&nbsp;</strong>장소 이름&nbsp;<strong>검색</strong></div>
     <div class="row">
         <div class="col"></div>
-        <form class="form-inline my-2 my-lg-0 div-to-align">
-            <input class="form-control mr-sm-2" type="text" placeholder="전체 장소중 검색">
-            <button class="btn btn-danger my-2 my-sm-0" type="button">Search</button>
+        <form class="form-inline my-2 my-lg-0 div-to-align" action="{% url 'search' %}" method="post">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2" type="text" name="place_search" placeholder="전체 장소중 검색">
+          <button class="btn btn-danger my-2 my-sm-0" type="summit">Search&nbsp;&nbsp;<i class="bi bi-search" style="color: white;"></i></button>
         </form>
         <div class="col"></div>
     </div>
@@ -188,7 +189,6 @@
         <strong>장소 추가</strong>&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="location.href='/SMUeat/place/create/'">+ 장소 추가</button>
     </div>
     <hr style="border: 1; height: 10px; margin-bottom: 19px;">
-
 
     {% block content %}
     {% endblock %}

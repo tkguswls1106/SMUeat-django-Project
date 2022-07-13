@@ -1,0 +1,10 @@
+{% extends 'SMUeat/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    검색하신 '<strong>{{ fail_place }}</strong>' 키워드를 포함하고 있는 <strong style="color:red">장소를 찾지 못하였습니다</strong>.<br>
+    오타를 확인하시고 '<strong>다시 검색</strong>'하시거나, '<strong>장소 추가</strong>'를 해주십시오.
+    <div style="line-height: 130%;"><br></div>
+    <button type="button" class="btn btn-primary" onclick="location.href='/SMUeat/place/create/'">+ 장소 추가</button>
+</div>
+{% endblock %}

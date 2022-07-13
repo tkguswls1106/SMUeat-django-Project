@@ -143,7 +143,7 @@ def place_sorting(request, category_link, sorting_name):
             places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-review_count', '-created_at')  # 리뷰자수내림차순은 맞는데, created 정렬은 바꿔야할듯
             context = {
                 'places':places,
-                'sort': '리뷰자수 내림차순 정렬',
+                'sort': '리뷰수 내림차순 정렬',
                 'category_link': category_link
             }
         return render(request, 'SMUeat/place_list.html', context)
@@ -167,7 +167,7 @@ def place_sorting(request, category_link, sorting_name):
             places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-review_count', '-created_at')  # 리뷰자수내림차순은 맞는데, created 정렬은 바꿔야할듯
             context = {
                 'places':places,
-                'sort': '리뷰자수 내림차순 정렬',
+                'sort': '리뷰수 내림차순 정렬',
                 'category_link': category_link
             }
         return render(request, 'SMUeat/place_list.html', context)
@@ -191,7 +191,17 @@ def place_sorting(request, category_link, sorting_name):
             places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-review_count', '-created_at')  # 리뷰자수내림차순은 맞는데, created 정렬은 바꿔야할듯
             context = {
                 'places':places,
-                'sort': '리뷰자수 내림차순 정렬',
+                'sort': '리뷰수 내림차순 정렬',
                 'category_link': category_link
             }
         return render(request, 'SMUeat/place_list.html', context)
+
+def search(request):
+    place_search = request.POST.get("place_search")
+    if place_search == "":
+        return HttpResponseRedirect('/SMUeat/place/all/list/highpoint/')
+    elif Place.objects.filter(name__contains=place_search):
+        places = Place.objects.filter(name__contains=place_search).annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순은 맞는데, created 정렬은 바꿔야할듯
+        return render(request, 'SMUeat/search_success.html', { 'places':places })
+    else:
+        return render(request, 'SMUeat/search_fail.html', { 'fail_place':place_search })

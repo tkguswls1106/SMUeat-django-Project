@@ -10,6 +10,7 @@ urlpatterns = [
     path('place/<int:place_id>/review/<int:review_id>/delete/', views.review_delete, name='review-delete'),
     path('place/create/', views.place_create, name="place-create"),
     path('place/<int:place_id>/review/create/', views.review_create, name="review-create"),
+    path('search/', views.search, name='search'),
 
     path('place/<int:place_id>/review/list/<str:sorting_name>/', views.review_sorting, name='review-sorting'),
     path('place/<str:category_link>/list/<str:sorting_name>/', views.place_sorting, name='place-sorting'),
