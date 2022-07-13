@@ -1,0 +1,13 @@
+{% extends 'SMUeat/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    '<strong>{{ fail_place_name }}</strong>' 이름의 장소는 <strong style="color:red">이미 등록되어있는 장소입니다</strong>.<br>
+    '<strong>다른 장소를 추가</strong>'하시거나, 해당 장소의 '<strong>리뷰 목록으로 이동</strong>' 해주십시오.<br>
+    혹은 체인점이라 이름이 같은 경우라면,<br>
+    본래 등록되어있는 장소와의 다른 특징을 곁들여 '장소+특징'(예시: 이디야커피 정문점, 이디야커피 2층점)으로 이름을 생성해주세요.
+    <div style="line-height: 130%;"><br></div>
+    <button type="button" class="btn btn-primary" onclick="location.href='/SMUeat/place/create/'">+ 장소 추가</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='/SMUeat/place/{{place.id}}/review/list/'">'{{ fail_place_name }}' 리뷰 목록</button>
+</div>
+{% endblock %}

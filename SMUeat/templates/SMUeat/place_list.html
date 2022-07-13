@@ -66,17 +66,21 @@
     {% for place in places %}
     <div class="row">
         <div class="col-sm-12">
-            {% if forloop.counter is 1 or forloop.counter is 2 or forloop.counter is 3 %}
-            <div class="card border-warning" style="border:solid 3px">
-                <div class="card-body">
-                    <h4 class="card-title" style="color:orange"><i class="bi bi-trophy-fill" style="font-size: 23px; color:rgb(255, 196, 0)"></i>&nbsp;{{forloop.counter}}위&nbsp;<i class="bi bi-trophy-fill" style="font-size: 23px; color:rgb(255, 196, 0)"></i></h4>
+            {% if places.number == 1 %}
+                {% if forloop.counter is 1 or forloop.counter is 2 or forloop.counter is 3 %}
+                    <div class="card border-warning" style="border:solid 3px">
+                        <div class="card-body">
+                            <h4 class="card-title" style="color:orange"><i class="bi bi-trophy-fill" style="font-size: 23px; color:rgb(255, 196, 0)"></i>&nbsp;{{forloop.counter}}위&nbsp;<i class="bi bi-trophy-fill" style="font-size: 23px; color:rgb(255, 196, 0)"></i></h4>
+                {% else %}
+                    <div class="card" style="border:solid 2px">
+                        <div class="card-body">
+                {% endif %}
             {% else %}
-            <div class="card" style="border:solid 2px">
                 <div class="card-body">
             {% endif %}
                     <h4 class="card-title"><strong>{{ place.name }}</strong></h4>
                     <p class="card-text"><strong>카테고리:</strong> {{ place.category }}</p>
-                    <p class="card-text"><strong>평점:</strong> {{ place.average_point }}/5.0점 ({{ place.review_count }}명 참여)</p>
+                    <p class="card-text"><strong>평점:</strong>  {{ place.average_point }}점(최대 5.0점)&nbsp;/&nbsp;{{ place.review_count }}명 참여</p>
                     <a href="{% url 'review-list' place_id=place.id %}" class="card-link">리뷰 보기&작성</a>
                     <a href="{% url 'place-delete' place_id=place.id %}" class="card-link">장소 삭제</a>
                 </div>
@@ -86,7 +90,50 @@
     <div style="line-height: 70%;"><br></div>
     {% endfor %}
 
-    <!-- pagenator -->
+
+    <div style="line-height: 70%;"><br></div>
+    <nav aria-label="show page">
+        <ul class="pagination justify-content-center">
+
+            {% if places.has_previous %}
+            <li class="page-item">
+                <span><a class="page-link" href="?page=1">&laquo; ···</a></span>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+            {% endif %}
+            </li>
+            {% if places.number != 1 %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ places.previous_page_number }}">{{ places.previous_page_number }}</a>
+            </li>
+            {% endif %}
+            <!-- <<(처음페이지로 이동) 와 이전 페이지 -->
+
+            <li class="page-item active" aria-current="page">
+                <span class="page-link">{{ places.number }}</span>
+            </li>
+            <!-- 현재 페이지 -->
+
+            {% if places.number !=  places.paginator.num_pages %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ places.next_page_number }}">{{ places.next_page_number }}</a>
+            </li>
+            {% endif %}
+            <!-- 다음 페이지 -->
+
+            {% if places.has_next %}
+            <li class="page-item">
+                <span><a class="page-link" href="?page={{ places.paginator.num_pages }}">··· &raquo;</a></span>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            {% endif %}
+            </li>
+            <!-- >>(끝페이지로 이동) -->
+
+        </ul>
+    </nav>
 
 
 </div>

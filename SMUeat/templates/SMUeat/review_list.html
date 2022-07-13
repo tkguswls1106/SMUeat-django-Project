@@ -34,6 +34,11 @@
     </form>
     <div style="line-height: 180%;"><br></div>
 
+    {% if render_num == 0 %}
+    해당 장소의 <strong style="color:red">리뷰가 존재하지 않습니다</strong>.<br>
+    첫 <strong style="color:red">리뷰를 작성</strong>해주십시오.
+    {% endif %}
+
     {% for review in reviews %}
     <div class="row">
         <div class="col-sm-12">
@@ -53,7 +58,50 @@
     <div style="line-height: 70%;"><br></div>
     {% endfor %}
 
-    <!-- pagenator -->
+
+    <div style="line-height: 70%;"><br></div>
+    <nav aria-label="show page">
+        <ul class="pagination justify-content-center">
+
+            {% if reviews.has_previous %}
+            <li class="page-item">
+                <span><a class="page-link" href="?page=1">&laquo; ···</a></span>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+            {% endif %}
+            </li>
+            {% if reviews.number != 1 %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ reviews.previous_page_number }}">{{ reviews.previous_page_number }}</a>
+            </li>
+            {% endif %}
+            <!-- <<(처음페이지로 이동) 와 이전 페이지 -->
+
+            <li class="page-item active" aria-current="page">
+                <span class="page-link">{{ reviews.number }}</span>
+            </li>
+            <!-- 현재 페이지 -->
+
+            {% if reviews.number !=  reviews.paginator.num_pages %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ reviews.next_page_number }}">{{ reviews.next_page_number }}</a>
+            </li>
+            {% endif %}
+            <!-- 다음 페이지 -->
+
+            {% if reviews.has_next %}
+            <li class="page-item">
+                <span><a class="page-link" href="?page={{ reviews.paginator.num_pages }}">··· &raquo;</a></span>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            {% endif %}
+            </li>
+            <!-- >>(끝페이지로 이동) -->
+
+        </ul>
+    </nav>
 
 
 </div>
