@@ -2,20 +2,19 @@
 {% load static %}
 {% block content %}
 <div class="container">
-<div style="color:red">
-    <dl>
-        <dt><strong>주의:</strong></dt>
-        <dd>
-            해당 삭제 기능은<br>
-            단순한 리뷰 삭제가 아닌, 장소 삭제로써<br>
-            장소와 하위 리뷰들이 전부 삭제됩니다.<br>
-            해당 장소를 정말 삭제하시겠습니까?
-        </dd>
-    </dl>
-</div>
+    <div style="color:red">
+        <strong>주의:</strong><br>
+        해당 삭제 기능은<br>
+        단순한 리뷰 삭제가 아닌, 장소 삭제로써<br>
+        장소와 하위 리뷰들이 전부 삭제됩니다.<br>
+        해당 장소를 정말 삭제하시겠습니까?
+    </div>
+    <div style="line-height: 40%;"><br></div>
     <form action="{% url 'place-delete' place_id=place.id %}" method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">장소 삭제</button>
-    </form>
+    </form><br>
+    <span style="color: blue;">('장소 삭제' 기능은 관리자 전용 기능입니다. 삭제 희망시 공지사항대로 관리자에게 문의하십시오.)</span><div style="line-height: 40%;"><br></div>
+    <button type="button" class="btn btn-primary" onclick="location.href='/SMUeat/notice/'">공지사항 보기</button>
 </div>
 {% endblock %}

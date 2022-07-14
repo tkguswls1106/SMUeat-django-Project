@@ -83,7 +83,7 @@
                     <p class="card-text"><strong>카테고리:</strong> {{ place.category }}</p>
                     <p class="card-text"><strong>평점:</strong>  {{ place.average_point }}점(최대 5.0점)&nbsp;/&nbsp;{{ place.review_count }}명 참여</p>
                     <a href="{% url 'review-list' place_id=place.id %}" class="card-link">리뷰 보기&작성</a>
-                    <a href="{% url 'place-delete' place_id=place.id %}" class="card-link">장소 삭제</a>
+                    <a href="{% url 'place-delete' place_id=place.id %}" class="card-link" style="color:red;">장소 삭제(관리자용)</a>
                 </div>
             </div>
         </div>
