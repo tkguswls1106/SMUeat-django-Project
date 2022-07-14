@@ -8,7 +8,6 @@ class Place(models.Model):
     ('술먹기좋은식당 and 술집', '술먹기좋은식당 and 술집'),
     )
     category = models.CharField(max_length=40, choices=PLACE_CATEGORY_CHOICES)
-    # password
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

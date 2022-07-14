@@ -12,8 +12,12 @@
     <div style="line-height: 40%;"><br></div>
     <form action="{% url 'place-delete' place_id=place.id %}" method="post">
         {% csrf_token %}
+        <strong>관리자용 장소삭제 비밀번호:</strong>&nbsp;&nbsp;<input type="password" name="password_admin">&nbsp;
         <button type="submit" class="btn btn-danger">장소 삭제</button>
-    </form><br>
+    </form>
+    <div style="line-height: 45%;"><br></div>
+    --------------------------------------------------------<br>
+    <div style="line-height: 45%;"><br></div>
     <span style="color: blue;">('장소 삭제' 기능은 관리자 전용 기능입니다. 삭제 희망시 공지사항대로 관리자에게 문의하십시오.)</span><div style="line-height: 40%;"><br></div>
     <button type="button" class="btn btn-primary" onclick="location.href='/SMUeat/notice/'">공지사항 보기</button>
 </div>

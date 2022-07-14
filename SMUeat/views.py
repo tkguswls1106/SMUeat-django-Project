@@ -13,7 +13,7 @@ def place_list(request):
     return HttpResponseRedirect('/SMUeat/place/all/list/highpoint/')
 
 # def place_list(request):
-#     places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순은 맞는데, created 정렬은 바꿔야할듯
+#     places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')
 #     context = {
 #         'places':places,
 #         'sort': '평점 높은순 정렬',
@@ -46,7 +46,9 @@ def place_delete(request, place_id):
     if request.method == 'GET':
         return render(request, 'SMUeat/delete_place.html', {'place': place})
     elif request.method == 'POST':
-        place.delete()
+        password_admin = request.POST.get('password_admin', '')
+        if password_admin=='tk276500':
+            place.delete()
         return redirect('place-list')
 
 
@@ -147,7 +149,7 @@ def review_sorting(request, place_id, sorting_name):
 def place_sorting(request, category_link, sorting_name):
     if category_link=='all':
         if(sorting_name == "highpoint"):
-            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순은 맞는데, created 정렬은 바꿔야할듯
+            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -157,7 +159,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         elif(sorting_name == "lowpoint"):
-            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-created_at')  # 평점낮은순은 맞는데, created 정렬은 바꿔야할듯
+            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-created_at')  # 평점낮은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -167,7 +169,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         elif (sorting_name == "manyreviewer"):
-            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-review_count', '-created_at')  # 리뷰자수내림차순은 맞는데, created 정렬은 바꿔야할듯
+            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-review_count', '-created_at')  # 리뷰자수내림차순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -180,7 +182,7 @@ def place_sorting(request, category_link, sorting_name):
 
     elif category_link=='restaurant':
         if(sorting_name == "highpoint"):
-            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순은 맞는데, created 정렬은 바꿔야할듯
+            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -190,7 +192,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         elif(sorting_name == "lowpoint"):
-            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-created_at')  # 평점낮은순은 맞는데, created 정렬은 바꿔야할듯
+            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-created_at')  # 평점낮은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -200,7 +202,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         elif (sorting_name == "manyreviewer"):
-            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-review_count', '-created_at')  # 리뷰자수내림차순은 맞는데, created 정렬은 바꿔야할듯
+            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-review_count', '-created_at')  # 리뷰자수내림차순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -213,7 +215,7 @@ def place_sorting(request, category_link, sorting_name):
 
     elif category_link=='alcohol':
         if(sorting_name == "highpoint"):
-            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순은 맞는데, created 정렬은 바꿔야할듯
+            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -223,7 +225,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         elif(sorting_name == "lowpoint"):
-            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-created_at')  # 평점낮은순은 맞는데, created 정렬은 바꿔야할듯
+            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-created_at')  # 평점낮은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -233,7 +235,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         elif (sorting_name == "manyreviewer"):
-            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-review_count', '-created_at')  # 리뷰자수내림차순은 맞는데, created 정렬은 바꿔야할듯
+            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-review_count', '-created_at')  # 리뷰자수내림차순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -249,7 +251,7 @@ def search(request):
     if place_search == "":
         return HttpResponseRedirect('/SMUeat/place/all/list/highpoint/')
     elif Place.objects.filter(name__contains=place_search):
-        places = Place.objects.filter(name__contains=place_search).annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순은 맞는데, created 정렬은 바꿔야할듯
+        places = Place.objects.filter(name__contains=place_search).annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순
         return render(request, 'SMUeat/search_success.html', { 'places':places })
     else:
         return render(request, 'SMUeat/search_fail.html', { 'fail_place':place_search })
