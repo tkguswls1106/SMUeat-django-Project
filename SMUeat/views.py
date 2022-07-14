@@ -253,3 +253,13 @@ def search(request):
         return render(request, 'SMUeat/search_success.html', { 'places':places })
     else:
         return render(request, 'SMUeat/search_fail.html', { 'fail_place':place_search })
+
+
+def info(request):
+    return render(request,'SMUeat/info.html')
+
+def notice(request):
+    return render(request,'SMUeat/notice.html')
+
+def tmi(request):
+    return render(request,'SMUeat/tmi.html')

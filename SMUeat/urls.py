@@ -14,4 +14,8 @@ urlpatterns = [
 
     path('place/<int:place_id>/review/list/<str:sorting_name>/', views.review_sorting, name='review-sorting'),
     path('place/<str:category_link>/list/<str:sorting_name>/', views.place_sorting, name='place-sorting'),
+
+    path('info/', views.info, name="info"),
+    path('notice/', views.notice, name="notice"),
+    path('tmi/', views.tmi, name="tmi"),
 ]
