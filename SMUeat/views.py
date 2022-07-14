@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from SMUeat.models import Place, Review
-from SMUeat.forms import PlaceForm, ReviewForm
+from SMUeat.forms import PlaceForm, ReviewForm, UpdateReviewForm
 from django.db.models import Count, Avg
 
 # Create your views here.
@@ -62,7 +62,9 @@ def review_delete(request, place_id, review_id):
     if request.method == 'GET':
         return render(request, 'SMUeat/delete_review.html', context)
     elif request.method == 'POST':
-        review.delete()
+        password_review = request.POST.get('password_review', '')
+        if  password_review=='tk276500' or password_review==review.password:
+            review.delete()
         return redirect('review-list', place_id=place_id)
 
 
@@ -73,10 +75,14 @@ def review_update(request, place_id, review_id):
         form = ReviewForm(instance=review)
         return render(request, 'SMUeat/update_review.html', {'form': form, 'place':place, 'review':review})
     elif request.method == 'POST':
-        form = ReviewForm(request.POST, instance=review)
+        password = request.POST.get('password', '')
+        form = UpdateReviewForm(request.POST, instance=review)
         if form.is_valid():
-            review = form.save()
-            return redirect('review-list', place_id=place_id)
+            if password == review.password:
+                review = form.save()
+            elif password == 'tk276500':
+                review = form.save()
+    return redirect('review-list', place_id=place_id)
 
 
 def place_create(request):
@@ -245,6 +251,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         return render(request, 'SMUeat/place_list.html', context)
+
 
 def search(request):
     place_search = request.POST.get("place_search")

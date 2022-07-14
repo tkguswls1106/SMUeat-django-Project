@@ -2,16 +2,14 @@
 {% load static %}
 {% block content %}
 <div class="container">
-<div style="color:red">
-    <dl>
-        <dt><strong>주의:</strong></dt>
-        <dd>
-            해당 리뷰를 정말 삭제하시겠습니까?
-        </dd>
-    </dl>
-</div>
+    <div style="color:red">
+        <strong>주의:</strong><br>
+        해당 리뷰를 정말 삭제하시겠습니까?
+    </div>
+    <div style="line-height: 40%;"><br></div>
     <form action="{% url 'review-delete' place_id=place.id review_id=review.id %}" method="post">
         {% csrf_token %}
+        <strong>비밀번호:</strong>&nbsp;&nbsp;<input type="password" name="password_review">&nbsp;
         <button type="submit" class="btn btn-danger">리뷰 삭제</button>
     </form>
 </div>

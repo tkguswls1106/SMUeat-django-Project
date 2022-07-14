@@ -33,18 +33,31 @@ class PlaceForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['point', 'menu', 'comment', 'place']
+        fields = ['point', 'menu', 'comment', 'place', 'password']
         labels = {
             'point': _('평점'),
             'menu': _('추천 메뉴'),
             'comment': _('리뷰 설명'),
+            'password': _('리뷰 비밀번호'),
         }
         help_texts = {
             'point': _('평점을 1~5점 중에서 골라주세요.'),
             'menu': _('추천 메뉴를 입력해주세요.'),
             'comment': _('리뷰 설명을 입력해주세요.'),
+            'password': _('리뷰 수정&삭제시 본인확인을 위해 비밀번호를 입력해주세요.'),
         }
         widgets = {
             'place': forms.HiddenInput(),
-            'point': forms.Select(choices=REVIEW_POINT_CHOICES)
+            'point': forms.Select(choices=REVIEW_POINT_CHOICES),
+            'password': forms.PasswordInput()
         }
+        error_messages = {
+            'password': {
+                'max_length': _("비밀번호가 너무 깁니다. 줄여주세요."),
+            },
+        }
+
+class UpdateReviewForm(ReviewForm):
+    class Meta:
+        model = Review
+        exclude = ['password']
