@@ -42,7 +42,7 @@
       }
       .navbar-brand{
       font-weight: 800;
-      font-size:xx-large;
+      font-size:27px;
       }
       .fa{
       font-size: 32px;
@@ -118,6 +118,43 @@
         font-size: 18px;
         color: black;
       }
+      .bx2 {
+        width: 310px;
+        height: 57px;
+        padding-top: 6px;
+        float: right;
+        position: static;
+      }
+      @media ( max-width: 377px ) {
+        img { display: none; }
+      }
+      @media ( min-width: 768px ) {
+        .space { display: none; }
+      }
+      @media ( min-width: 330px ) {
+        .space2 { display: none; }
+      }
+      @media ( min-width: 422px ) {
+        .space3 { display: none; }
+      }
+      @media ( min-width: 576px ) {
+        .space4 { display: none; }
+      }
+      @media ( min-width: 495px ) {
+        .space5 { display: none; }
+      }
+      @media ( max-width: 370px ) {
+        .copy { font-size: small; }
+      }
+      @media ( min-width: 1269px ) {
+        .spacenav { display: none; }
+      }
+      @media ( max-width: 992px ) {
+        .hig { display: none; }
+      }
+      @media ( min-width: 992px ) {
+        .wid { display: none; }
+      }
     </style>
   </head>
 
@@ -125,12 +162,14 @@
     <header class="bg-white">
       <div class="container">
         <div class="row">
-        <img class="col-1" src="{% static 'SMUeat/상명대마크.png' %}" style="height: 65px;">
-          <div class="col-7">
-            <a class="navbar-brand text-dark pt-2" style="margin-right: 11px;" href="/SMUeat/">상명대생 오늘 어디서 먹지?</a><a style="color: rgb(106, 105, 105); text-decoration:none;" href="/SMUeat/">SMU eat</a>
+          <div class="col-lg-7 col-md-12">
+            <div class="bx1">
+              <img src="{% static 'SMUeat/상명대마크.png' %}" style="width:45px; height: 55px; margin-right: 9px; margin-bottom: 3px;">
+              <a class="navbar-brand text-dark" style="display:inline-block; margin-right: 9px; padding-top: 8px;" href="/SMUeat/">상명대생 오늘 어디서 먹지?<br></a>
+            </div>
           </div>
-          <div class="col-4 pt-2">
-            <ul>
+          <div class="col-lg-5 col-md-12">
+            <ul class="bx2">
               <li><strong>사이트 개발자:</strong>&nbsp;&nbsp;<em>SMU Software 19th</em>&nbsp;&nbsp;<strong>사현진</strong></li>
               <li><strong>Contact:</strong>&nbsp;&nbsp;
                 <a href="mailto:tkguswls1106@gmail.com?subject=SMUeat 문의제목: &body=%0D%0A%0D%0A%0D%0A%0D%0A  -----------------------------------------------------------%0D%0A문의 및 건의사항 및 보완할점 내용을 위에 적어주세요!"><i class="bi bi-envelope"></i></a>&nbsp;&nbsp;
@@ -150,31 +189,31 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/SMUeat/">모든 장소</a>
+            <a class="nav-link" href="/SMUeat/">모든&nbsp;<span class="spacenav"><br></span>장소</a>
           </li>
           <li class="nav-item pt-2">
-            <a class="nav-text" style="color: white; font-size: large;">|</a>
+            <a class="nav-text" style="color: white; font-size: large;"><span class="hig">|</span><span class="wid">-</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/SMUeat/place/restaurant/list/highpoint/">식당 (식사만 가능)</a>
+            <a class="nav-link" href="/SMUeat/place/restaurant/list/highpoint/">식당&nbsp;<span class="spacenav"><br></span>(식사만 가능)</a>
           </li>
           <li class="nav-item pt-2">
-            <a class="nav-text" style="color: white; font-size: large;">|</a>
+            <a class="nav-text" style="color: white; font-size: large;"><span class="hig">|</span><span class="wid">-</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/SMUeat/place/alcohol/list/highpoint/">술먹기좋은식당 and 술집 (식사&술 모두 가능)</a>
+            <a class="nav-link" href="/SMUeat/place/alcohol/list/highpoint/">술먹기좋은식당 and 술집&nbsp;<span class="spacenav"><br></span>(식사&술 모두 가능)</a>
           </li>
           <li class="nav-item pt-2">
-            <a class="nav-text" style="color: white; font-size: large;">|</a>
+            <a class="nav-text" style="color: white; font-size: large;"><span class="hig">|</span><span class="wid">-</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'info' %}">목적&정보</a>
+            <a class="nav-link" href="{% url 'info' %}">목적<span class="spacenav"><br></span>&정보</a>
           </li>
           <li class="nav-item pt-2">
             <a class="nav-text" style="color: white; font-size: large;">·</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'notice' %}">공지사항</a>
+            <a class="nav-link" href="{% url 'notice' %}">공지<span class="spacenav"><br></span>사항</a>
           </li>
           <li class="nav-item pt-2">
             <a class="nav-text" style="color: white; font-size: large;">·</a>
@@ -186,7 +225,7 @@
       </div>
     </nav>
     <br>
-    <div style="text-align: center;"><strong style="font-size: 18px;">과정 1 >&nbsp;</strong>장소 이름&nbsp;<strong>검색 (한글&영어명 모두 검색해보기)</strong></div>
+    <div style="text-align: center;"><strong style="font-size: 18px;">과정 1 >&nbsp;</strong>장소 이름&nbsp;<strong>검색 (한글&영어 모두 검색)</strong></div>
     <div class="row">
         <div class="col"></div>
         <form class="form-inline my-2 my-lg-0 div-to-align" action="{% url 'search' %}" method="post">
@@ -197,7 +236,7 @@
         <div class="col"></div>
     </div>
     <div style="text-align: center">
-        <strong style="font-size: 18px;">과정 2 >&nbsp;</strong>장소가 검색에 뜨면&nbsp;<strong>리뷰 탐색 및 작성</strong> or 안뜨면&nbsp;
+        <strong style="font-size: 18px;">과정 2 >&nbsp;</strong>장소가 검색에 뜨면&nbsp;<strong>리뷰 탐색 및 작성</strong>&nbsp;<span class="space4"><br></span>or 안뜨면&nbsp;
         <strong>장소 추가</strong>&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="location.href='/SMUeat/place/create/'">+ 장소 추가</button>
     </div>
     <hr style="border: 1; height: 10px; margin-bottom: 19px;">
@@ -212,8 +251,8 @@
       Back-End Developer: SAHYUNJIN<br>
       Web Designer: SAHYUNJIN<br>
       </span>
-      <span style="color: black;">
-      Copyright 2022. SAHYUNJIN. all rights reserved.
+      <span class="copy" style="color: black;">
+        Copyright 2022. SAHYUNJIN. all rights reserved.
       </span>
     </footer>
   </body>

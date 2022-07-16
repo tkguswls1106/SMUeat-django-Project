@@ -44,11 +44,11 @@
 
 <div class="container">
     {% if 'all' in category_link %}
-    <h4 style="display:inline">'<strong>모든 장소</strong>' 카테고리 순위 <strong>({{ sort }})</strong></h4>&nbsp;&nbsp;
+    <h4 style="display:inline">'<strong>모든 장소</strong>' 카테고리 순위 <strong><span class="space"><br></span>({{ sort }})</strong></h4>&nbsp;&nbsp;
     {% elif 'restaurant' in category_link %}
-    <h4 style="display:inline">'<strong>식당</strong>' 카테고리 순위 <strong>({{ sort }})</strong></h4>&nbsp;&nbsp;
+    <h4 style="display:inline">'<strong>식당</strong>' 카테고리 순위 <strong><span class="space"><br></span>({{ sort }})</strong></h4>&nbsp;&nbsp;
     {% elif 'alcohol' in category_link %}
-    <h4 style="display:inline">'<strong>술먹기좋은식당 and 술집</strong>' 카테고리 순위 <strong>({{ sort }})</strong></h4>&nbsp;&nbsp;
+    <h4 style="display:inline">'<strong>술먹기좋은식당 and 술집</strong>'&nbsp;<span class="space3"><br></span>카테고리 순위 <strong><span class="space"><br></span>({{ sort }})</strong></h4>&nbsp;&nbsp;
     {% endif %}
     <div style="line-height: 80%;"><br></div>
     
@@ -81,8 +81,9 @@
             {% endif %}
                     <h4 class="card-title"><strong>{{ place.name }}</strong></h4>
                     <p class="card-text"><strong>카테고리:</strong> {{ place.category }}</p>
-                    <p class="card-text"><strong>평점:</strong>  {{ place.average_point }}점(최대 5.0점)&nbsp;/&nbsp;{{ place.review_count }}명 참여</p>
-                    <a href="{% url 'review-list' place_id=place.id %}" class="card-link">리뷰 보기&작성</a>
+                    <p class="card-text"><strong>평점:</strong>  {{ place.average_point }}점(최대 5.0점)&nbsp;<span class="space2"><br></span>/&nbsp;{{ place.review_count }}명 참여</p>
+                    <a href="{% url 'review-list' place_id=place.id %}" class="card-link">리뷰 보기&작성</a>&nbsp;&nbsp;
+                    <span class="space2"><br></span>
                     <a href="{% url 'place-delete' place_id=place.id %}" class="card-link" style="color:red;">장소 삭제(관리자용)</a>
                 </div>
             </div>
