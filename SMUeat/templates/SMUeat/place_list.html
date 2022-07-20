@@ -39,6 +39,9 @@
                 location.href="/SMUeat/place/alcohol/list/manyreviewer/";
             }
         }
+        else if (val == "new") {
+            location.href="/SMUeat/place/new/list/";
+        }
     }
 </script>
 
@@ -58,6 +61,7 @@
             <option value = "highpoint">평점 높은순</option>
             <option value = "lowpoint">평점 낮은순</option>
             <option value = "manyreviewer">리뷰수 내림차순</option>
+            <option value = "new">최신순 (관리자용)</option>
         </select>
         <input type="button" value="정렬" onclick="sorting();">
     </form>

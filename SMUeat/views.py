@@ -272,3 +272,24 @@ def notice(request):
 
 def tmi(request):
     return render(request,'SMUeat/tmi.html')
+
+
+def newplacelist(request):
+    page = request.GET.get('page')
+    if request.method == 'GET':
+        return render(request, 'SMUeat/checkpassword.html', { 'page':page })
+    elif request.method == 'POST':
+        password_admin = request.POST.get('password_admin', '')
+        if password_admin=='tk276500':
+            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-created_at')  # 최신순
+            paginator = Paginator(places, 8)
+            page_places = paginator.get_page(page)
+            context = {
+                'places':page_places,
+                'sort': '최신순 관리자용 정렬',
+                'category_link': 'all',
+                'page': page
+            }
+            return render(request, 'SMUeat/place_list.html', context)
+        else:
+            return HttpResponseRedirect('/SMUeat/')

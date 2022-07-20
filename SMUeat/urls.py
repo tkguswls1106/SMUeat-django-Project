@@ -18,4 +18,6 @@ urlpatterns = [
     path('info/', views.info, name="info"),
     path('notice/', views.notice, name="notice"),
     path('tmi/', views.tmi, name="tmi"),
+
+    path('place/new/list/', views.newplacelist, name='newplacelist'),
 ]
