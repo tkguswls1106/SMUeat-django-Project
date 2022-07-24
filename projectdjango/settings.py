@@ -122,6 +122,8 @@ import os
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = 'static2/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
