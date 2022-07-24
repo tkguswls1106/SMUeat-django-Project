@@ -293,3 +293,22 @@ def newplacelist(request):
             return render(request, 'SMUeat/place_list.html', context)
         else:
             return HttpResponseRedirect('/SMUeat/')
+
+
+def newreviewlist(request):
+    page = request.GET.get('page')
+    if request.method == 'GET':
+        return render(request, 'SMUeat/checkpassword_review.html', { 'page':page })
+    elif request.method == 'POST':
+        password_admin = request.POST.get('password_admin', '')
+        if password_admin=='tk276500':
+            reviews = Review.objects.all().select_related().order_by('-created_at')
+            paginator = Paginator(reviews, 8)
+            page_reviews = paginator.get_page(page)
+            context = {
+                'reviews':page_reviews,
+                'sort': '리뷰전체 정렬',
+            }
+            return render(request, 'SMUeat/review_list.html', context)
+        else:
+            return HttpResponseRedirect('/SMUeat/')

@@ -42,6 +42,9 @@
         else if (val == "new") {
             location.href="/SMUeat/place/new/list/";
         }
+        else if (val == "newreview") {
+            location.href="/SMUeat/place/new/review/";
+        }
     }
 </script>
 
@@ -62,6 +65,7 @@
             <option value = "lowpoint">평점 낮은순</option>
             <option value = "manyreviewer">리뷰수 내림차순</option>
             <option value = "new">최신순 (관리자용)</option>
+            <option value = "newreview">리뷰전체 (관리자용)</option>
         </select>
         <input type="button" value="정렬" onclick="sorting();">
     </form>

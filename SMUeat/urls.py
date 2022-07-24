@@ -20,4 +20,5 @@ urlpatterns = [
     path('tmi/', views.tmi, name="tmi"),
 
     path('place/new/list/', views.newplacelist, name='newplacelist'),
+    path('place/new/review/', views.newreviewlist, name='newreviewlist'),
 ]
