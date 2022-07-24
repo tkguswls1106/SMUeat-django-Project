@@ -155,7 +155,7 @@ def review_sorting(request, place_id, sorting_name):
 def place_sorting(request, category_link, sorting_name):
     if category_link=='all':
         if(sorting_name == "highpoint"):
-            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순
+            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-review_count', '-created_at')  # 평점높은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -165,7 +165,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         elif(sorting_name == "lowpoint"):
-            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-created_at')  # 평점낮은순
+            places = Place.objects.all().annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-review_count',  '-created_at')  # 평점낮은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -188,7 +188,7 @@ def place_sorting(request, category_link, sorting_name):
 
     elif category_link=='restaurant':
         if(sorting_name == "highpoint"):
-            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순
+            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-review_count',  '-created_at')  # 평점높은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -198,7 +198,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         elif(sorting_name == "lowpoint"):
-            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-created_at')  # 평점낮은순
+            places = Place.objects.filter(category__exact='식당').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-review_count',  '-created_at')  # 평점낮은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -221,7 +221,7 @@ def place_sorting(request, category_link, sorting_name):
 
     elif category_link=='alcohol':
         if(sorting_name == "highpoint"):
-            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-created_at')  # 평점높은순
+            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('-average_point', '-review_count',  '-created_at')  # 평점높은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -231,7 +231,7 @@ def place_sorting(request, category_link, sorting_name):
                 'category_link': category_link
             }
         elif(sorting_name == "lowpoint"):
-            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-created_at')  # 평점낮은순
+            places = Place.objects.filter(category__exact='술먹기좋은식당 and 술집').annotate(review_count=Count('review')).annotate(average_point=Avg('review__point')).order_by('average_point', '-review_count',  '-created_at')  # 평점낮은순
             paginator = Paginator(places, 8)
             page = request.GET.get('page')
             page_places = paginator.get_page(page)
@@ -307,7 +307,7 @@ def newreviewlist(request):
             page_reviews = paginator.get_page(page)
             context = {
                 'reviews':page_reviews,
-                'sort': '리뷰전체 정렬',
+                'sort': '리뷰전체 관리자용 정렬',
             }
             return render(request, 'SMUeat/review_list.html', context)
         else:
